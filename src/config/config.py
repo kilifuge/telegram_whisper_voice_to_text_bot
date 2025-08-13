@@ -8,10 +8,6 @@ class TgBot:
     token: str
 
 @dataclass
-class MistralConfig:
-    token: str
-
-@dataclass
 class LogConfig:
     level: int
     format: str
@@ -20,7 +16,6 @@ class LogConfig:
 class Config:
     bot: TgBot
     log: LogConfig
-    mistral: MistralConfig
     
 def get_config(path: str | None = None):
     env = Env()
@@ -31,7 +26,4 @@ def get_config(path: str | None = None):
             level=getattr(logging,env('LOG_LEVEL')),
             format=env('LOG_FORMAT'),
         ),
-        mistral=MistralConfig(
-            token=env('MISTRAL_TOKEN'),
-        )
     )

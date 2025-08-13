@@ -2,9 +2,7 @@ import logging, os
 import asyncio
 import whisper
 
-
 from aiogram import Bot, Dispatcher
-from mistralai import Mistral
 
 from config.config import get_config
 from handlers.users import router as users_router
@@ -22,12 +20,10 @@ async def main():
     logger.info('Loading whisper model')
     model = whisper.load_model('small')
 
-    client = Mistral(api_key=conf.mistral.token)
-
     bot = Bot(conf.bot.token)
     dp = Dispatcher()
 
-    dp.workflow_data.update(model=model, client=client)
+    dp.workflow_data.update(model=model)
     dp.include_router(users_router)
 
     await bot.delete_webhook(drop_pending_updates=True)
