@@ -1,0 +1,6 @@
+services:
+  whisper-bot:
+    build: ./src
+    container_name: whisper-bot
+    restart: unless-stopped
+    env_file: .env

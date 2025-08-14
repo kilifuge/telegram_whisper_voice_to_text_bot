@@ -31,11 +31,11 @@ async def process_voice_message(message: Message, model: Whisper):
     logger.info('Audio transcription started')
     result = model.transcribe(filepath, fp16=False)
 
-    await message.reply(lexicon_ru['transcribe']: str + result['text']: str)
+    await message.reply(lexicon_ru['transcribe'] + result['text'])
     os.remove(filepath)
 
 
-@router.message(F.video_note)
+@router.message(F.video_note, F.video)
 async def process_video_note(message: Message, model:Whisper):
     file_id = message.video_note.file_id
     user_id = message.from_user.id
