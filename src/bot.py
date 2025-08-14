@@ -8,7 +8,7 @@ from config.config import get_config
 from handlers.users import router as users_router
 
 async def main():
-    conf = get_config(os.getcwd() + '/src/.env')
+    conf = get_config()
     
     logging.basicConfig(
         level=conf.log.level,
